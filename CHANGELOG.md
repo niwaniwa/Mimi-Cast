@@ -8,11 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Added jins meme conection process[`#1`](https://github.com/niwaniwa/Mimi-Cast/issues/1)
+- Added jins meme conection process. [`#1`](https://github.com/niwaniwa/Mimi-Cast/issues/1)
+- Added VRM packages. [`#5`](https://github.com/niwaniwa/Mimi-Cast/issues/5)
 
 ### Changed
 
 ### Fixed
 
 ### Removed
-- Removed plugin.meta
+- Removed plugin.meta.
