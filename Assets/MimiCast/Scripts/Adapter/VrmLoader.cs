@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MimiCast.Scripts.Entity;
 using UniGLTF;
 using UniVRM10;
 
@@ -9,19 +10,23 @@ namespace MimiCast.Scripts.Adapter
     {
 
         private string _path;
-
-        private Vrm10Instance _vrmController;
-
-        public Vrm10Runtime Runtime => _vrmController.Runtime;
-
+        
         public VrmLoader(string path)
         {
-            this._path = path;
+            _path = path;
         }
 
-        public async Task LoadModel()
+        public async Task<MimiAvatar> LoadModel()
         {
-            _vrmController = await Vrm10.LoadPathAsync(_path);
+            var instance = await Vrm10.LoadPathAsync(_path);
+            if (instance == null)
+            {
+                return null;
+            }
+            var modelData = instance.GetComponent<RuntimeGltfInstance>();
+            modelData.ShowMeshes();
+            modelData.EnableUpdateWhenOffscreen();
+            return new MimiAvatar(modelData);
         }
     }
 }

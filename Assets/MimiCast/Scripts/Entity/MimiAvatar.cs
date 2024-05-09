@@ -1,18 +1,31 @@
-﻿using UniVRM10;
+﻿using UniGLTF;
+using UnityEngine;
+using UniVRM10;
 
 namespace MimiCast.Scripts.Entity
 {
     public class MimiAvatar
     {
-        private Vrm10Runtime _runtime;
-        
-        public MimiAvatar(Vrm10Runtime runtime)
+        public RuntimeGltfInstance ModelData
         {
-            _runtime = runtime;
+            get;
+            private set;
         }
-
-        public void GetHumanoid()
+        
+        public MimiAvatar(RuntimeGltfInstance runtime)
         {
+            ModelData = runtime;
+            
+            var animation = ModelData.GetComponent<Animation>();
+            if (animation && animation.clip != null)
+            {
+                animation.Play(animation.clip.name);
+            }
+        }
+        
+        public void Dispose()
+        {
+            GameObject.Destroy(ModelData.gameObject);
         }
         
     }

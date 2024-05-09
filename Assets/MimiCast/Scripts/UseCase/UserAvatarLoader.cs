@@ -3,19 +3,25 @@ using MimiCast.Scripts.Adapter;
 using MimiCast.Scripts.Entity;
 using UnityEngine;
 
-namespace MimiCast.Scripts.Usecase
+namespace MimiCast.Scripts.UseCase
 {
     public class UserAvatarLoader : MonoBehaviour
     {
 
         [SerializeField] private string path;
+
+        private MimiAvatar _avatar;
         
-        public void Start()
+        public async void Start()
         {
+
             var loader = new VrmLoader(path);
-            var task = loader.LoadModel();
-            task.Wait();
-            var avater = new MimiAvatar(loader.Runtime);
+            _avatar = await loader.LoadModel();
+            
+            if (_avatar == null)
+            {
+                return;
+            }
         }
     }
 }
