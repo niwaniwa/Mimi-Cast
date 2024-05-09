@@ -28,7 +28,7 @@ namespace MimiCast.Scripts.Infrastructure
             }
         }
 
-        public void Start()
+        public void Awake()
         {
             Debug.Log("start");
             _webSocketServer = new WebSocketServer(port);
