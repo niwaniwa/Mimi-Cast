@@ -18,15 +18,17 @@ namespace MimiCast.Scripts.Adapter
 
         public async Task<MimiAvatar> LoadModel()
         {
-            var instance = await Vrm10.LoadPathAsync(_path);
+            var instance = await Vrm10.LoadPathAsync(_path,
+                true,
+                ControlRigGenerationOption.Generate,
+                true);
             if (instance == null)
             {
                 return null;
             }
-            var modelData = instance.GetComponent<RuntimeGltfInstance>();
-            modelData.ShowMeshes();
-            modelData.EnableUpdateWhenOffscreen();
-            return new MimiAvatar(modelData);
+            return new MimiAvatar(instance);
         }
+
+        public ControlRigGenerationOption ControlRigGenerationOption { get; set; }
     }
 }

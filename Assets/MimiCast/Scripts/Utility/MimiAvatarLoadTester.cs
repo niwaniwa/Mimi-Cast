@@ -26,7 +26,7 @@ namespace MimiCast.Scripts.Utility
             var modelData = instance.GetComponent<RuntimeGltfInstance>();
             modelData.ShowMeshes();
             modelData.EnableUpdateWhenOffscreen();
-            _avatar = new MimiAvatar(modelData);
+            _avatar = new MimiAvatar(instance);
             return;
         }
 

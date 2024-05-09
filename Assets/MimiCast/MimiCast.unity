@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 842269213}
   - component: {fileID: 842269212}
   m_Layer: 0
-  m_Name: test
+  m_Name: Connecter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 1698553991}
   - component: {fileID: 1698553992}
   m_Layer: 0
-  m_Name: Avatar
+  m_Name: UserAvatarLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,12 +387,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698553989}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87a8c2d6a7ec57f40b0fbbdcbf457a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   path: C:/Users/konya/Desktop/unini.vrm
+  connecter: {fileID: 842269212}
 --- !u!114 &1698553992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83b895ccec48e88b9c331e1c1e2a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: 
 --- !u!1 &1943937937
 GameObject:
   m_ObjectHideFlags: 0

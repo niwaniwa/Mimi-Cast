@@ -9,6 +9,7 @@ namespace MimiCast.Scripts.UseCase
     {
 
         [SerializeField] private string path;
+        [SerializeField] private Connecter connecter;
 
         private MimiAvatar _avatar;
         
@@ -22,6 +23,9 @@ namespace MimiCast.Scripts.UseCase
             {
                 return;
             }
+            
+            connecter.ApplyAvatar(_avatar);
+            connecter.Calibration();
         }
     }
 }
