@@ -77,3 +77,5 @@ crashlytics-build.properties
 # End of https://www.toptal.com/developers/gitignore/api/unity
 Assets/Plugins
 Assets/Plugins.meta
+Assets/Samples.meta
+Assets/Samples
