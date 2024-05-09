@@ -21,7 +21,13 @@ namespace MimiCast.Scripts.Entity
             private set;
         }
 
-        public Transform Head
+        public Transform Neck
+        {
+            get;
+            private set;
+        }
+        
+        public Transform Chest
         {
             get;
             private set;
@@ -34,7 +40,8 @@ namespace MimiCast.Scripts.Entity
             ModelData.EnableUpdateWhenOffscreen();
           
             var animator = instance.GetComponent<Animator>();
-            Head = instance.Runtime.ControlRig.GetBoneTransform(HumanBodyBones.Head);
+            Neck = instance.Runtime.ControlRig.GetBoneTransform(HumanBodyBones.Neck);
+            Chest = instance.Runtime.ControlRig.GetBoneTransform(HumanBodyBones.Chest);
             
         }
         
