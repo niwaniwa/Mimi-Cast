@@ -16,7 +16,8 @@ namespace MimiCast.Scripts.Infrastructure
 
         [SerializeField] private int port;
         
-        private Subject<string> _subject = new Subject<string>();
+        private readonly Subject<string> _onMessage = new();
+        private readonly Subject<Unit> _onClose = new();
 
         public bool IsServerActive
         {
@@ -30,26 +31,27 @@ namespace MimiCast.Scripts.Infrastructure
 
         public void Awake()
         {
-            Debug.Log("start");
             _webSocketServer = new WebSocketServer(port);
             _webSocketServer.AddWebSocketService<JinsEcho>("/", echo =>
             {
-                echo.Subject = _subject;
+                echo.OnMessageSubject = _onMessage;
+                echo.OnCloseSubject = _onClose;
             });
 
-            _subject.ObserveOnMainThread()
+            _onMessage.ObserveOnMainThread()
                 .Subscribe(message =>
                 {
                     var data = DeSerializeJsonString(message);
-                    Receiver.OnNext(data);
+                    OnMessageReceiveSubject.OnNext(data);
                 }).AddTo(this);
+            
+            _onClose.ObserveOnMainThread()
+                .Subscribe(OnListenStopSubject.OnNext).AddTo(this);
             _webSocketServer.Log.Level = LogLevel.Debug;
-            Debug.Log("end");
         }
 
         public override void StartListen()
         {
-            Debug.Log("StartListen");
             _webSocketServer.Start();
         }
 
@@ -76,7 +78,13 @@ namespace MimiCast.Scripts.Infrastructure
     internal class JinsEcho : WebSocketBehavior
     {
 
-        public Subject<string> Subject
+        public Subject<string> OnMessageSubject
+        {
+            private get;
+            set;
+        }
+        
+        public Subject<Unit> OnCloseSubject
         {
             private get;
             set;
@@ -87,9 +95,14 @@ namespace MimiCast.Scripts.Infrastructure
             Debug.Log($"open");
         }
 
+        protected override void OnClose(CloseEventArgs e)
+        {
+            OnCloseSubject.OnNext(Unit.Default);
+        }
+
         protected override void OnMessage(MessageEventArgs e)
         {
-            Subject.OnNext(e.Data);
+            OnMessageSubject.OnNext(e.Data);
         }
     }
 }

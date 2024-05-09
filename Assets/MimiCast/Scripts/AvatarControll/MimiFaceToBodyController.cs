@@ -8,6 +8,8 @@ namespace MimiCast.Scripts.AvatarControll
         // faceからどれだけ動きを伝播させるか
         private float factor = 0.3f;
         
+        public JinsData AnchorData { get; set; } 
+        
         public Quaternion BodyAngle
         {
             get;

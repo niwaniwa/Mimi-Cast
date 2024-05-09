@@ -42,7 +42,6 @@ namespace MimiCast.Scripts.Entity
             var animator = instance.GetComponent<Animator>();
             Neck = instance.Runtime.ControlRig.GetBoneTransform(HumanBodyBones.Neck);
             Chest = instance.Runtime.ControlRig.GetBoneTransform(HumanBodyBones.Chest);
-            
         }
         
         public void Dispose()

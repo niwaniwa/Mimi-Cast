@@ -5,6 +5,13 @@ namespace MimiCast.Scripts.Entity
     [Serializable]
     public class JinsData
     {
+        public static JinsData Default = new JinsData()
+        {
+            pitch = 0,
+            yaw = 0,
+            roll = 0
+        };
+        
         public int sequenceNumber;
         public bool noiseStatus;
         public float eyeMoveRight;
