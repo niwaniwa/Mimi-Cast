@@ -19,6 +19,8 @@ namespace MimiCast.Scripts.Adapter
         
         public bool IsEndCalibration { get; private set; }
 
+        public MimiAvatar AttachedAvatar => _avatar;
+
         public JinsData CalibrationData
         {
             get => _calibrationData;
