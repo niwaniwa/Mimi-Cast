@@ -53,6 +53,7 @@ namespace MimiCast.Scripts.Adapter
             if (_avatar == null) return;
             if (!IsEndCalibration) return;
 
+
             faceAngleController.UpdateAngle(data);
             faceToBodyController.UpdateAngle(data, faceAngleController.FaceAngle);
             
@@ -81,11 +82,13 @@ namespace MimiCast.Scripts.Adapter
 
         public void StartProcess()
         {
+            Debug.Log("start listen");
             device.StartListen();
         }
 
         public void StopProcess()
         {
+            Debug.Log("stop listen");
             device.StopListen();
         }
 

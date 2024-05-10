@@ -36,26 +36,33 @@ namespace MimiCast.Scripts.AvatarControll
         public void UpdateAngle(JinsData data)
         {
             // use calibration
-            float adjustedYaw = NormalizeAngle(data.yaw - AnchorData.yaw);
+            float adjustedYaw = NormalizeYawAngle(data.yaw - AnchorData.yaw);
+            float adjustedPitch = NormalizePitchAngle(data.pitch - AnchorData.pitch);
+            float adjustedRoll = NormalizeRollAngle(data.roll - AnchorData.roll);
             
-            Quaternion currentAngle = Quaternion.Euler(data.pitch, adjustedYaw, data.roll);
+            Quaternion currentAngle = Quaternion.Euler(adjustedPitch, adjustedYaw, adjustedRoll);
             Quaternion targetAngle = Quaternion.Euler(0, 0, 0);
             
+            // 一定以上後ろを向くと自動的に前を向くように
             if (adjustedYaw is >= 80 and <= 300)
             {
                 if (!isProcessingDefaultAngle)
                 {
+                    isProcessingDefaultAngle = true;
                     _cancellationTokenSource = new ();
-                    _ = ResetDefaultAngle(2, currentAngle, targetAngle, AnimationCurve.EaseInOut(0f, 0f, 1f, 1f), _cancellationTokenSource.Token);
+                    _ = ResetDefaultAngle(0.5f, currentAngle, targetAngle, AnimationCurve.EaseInOut(0f, 0f, 1f, 1f), _cancellationTokenSource.Token);
                 }
                     
             }
             else
             {
-                _cancellationTokenSource?.Cancel();
-                _cancellationTokenSource?.Dispose();
+                if (isProcessingDefaultAngle)
+                {
+                    isProcessingDefaultAngle = false;
+                    _cancellationTokenSource?.Cancel();
+                    _cancellationTokenSource?.Dispose();
+                }
                 FaceAngle = currentAngle;
-                _elapsedTime = 0;
             }
         }
 
@@ -78,14 +85,21 @@ namespace MimiCast.Scripts.AvatarControll
                 FaceAngle = Quaternion.Slerp(currentAngle, targetAngle, ration);
                 await UniTask.DelayFrame(1, cancellationToken: cancellationToken);
             }
-
-            isProcessingDefaultAngle = true;
         }
         
-        private float NormalizeAngle(float angle)
+        private float NormalizeYawAngle(float angle)
         {
-            angle = (angle + 360) % 360;
+            return (angle + 360) % 360;
+        }
+        
+        private float NormalizePitchAngle(float angle)
+        {
             return angle;
+        }
+        
+        private float NormalizeRollAngle(float angle)
+        {
+            return (angle + 180) % 360 - 180;
         }
     }
 }

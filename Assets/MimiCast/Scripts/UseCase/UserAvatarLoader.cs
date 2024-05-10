@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using MimiCast.Scripts.Adapter;
 using MimiCast.Scripts.Entity;
 using UnityEngine;
+using System.Windows.Forms;
+using SFB;
 
 namespace MimiCast.Scripts.UseCase
 {
@@ -15,17 +19,28 @@ namespace MimiCast.Scripts.UseCase
         
         public async void Start()
         {
+            var avatar = await LoadAvatar(path);
+            connector.ApplyAvatar(avatar);
+        }
 
-            var loader = new VrmLoader(path);
+        public async Task<MimiAvatar> LoadAvatar(string targetpath)
+        {
+            var extension = new [] {
+                new ExtensionFilter("vrm Files", "vrm", "VRM"),
+            };
+            var path = StandaloneFileBrowser.OpenFilePanel("Load VRM File", "", extension,false);
+
+            if (path.Length <= 0) return null;
+            
+            var loader = new VrmLoader(path[0]);
             _avatar = await loader.LoadModel();
             
             if (_avatar == null)
             {
-                return;
+                return null;
             }
-            
-            connector.ApplyAvatar(_avatar);
-            connector.Calibration();
+
+            return _avatar;
         }
     }
 }
