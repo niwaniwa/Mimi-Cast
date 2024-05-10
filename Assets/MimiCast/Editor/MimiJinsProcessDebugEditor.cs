@@ -1,4 +1,5 @@
-﻿using MimiCast.Scripts.UseCase;
+﻿using System.Threading.Tasks;
+using MimiCast.Scripts.UseCase;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,14 +10,12 @@ namespace MimiCast.Editor
     {
         private MimiJinsProcessDebugger _debugger;
 
-        private SerializedProperty _path;
-
         public void OnEnable()
         {
             _debugger = target as MimiJinsProcessDebugger;
         }
 
-        public override void OnInspectorGUI()
+        public override async void OnInspectorGUI()
         {
             base.OnInspectorGUI();
             
@@ -40,6 +39,14 @@ namespace MimiCast.Editor
             if (GUILayout.Button("キャリブレーション")){
                 _debugger._avatarConnector.Calibration();
             } 
+            
+            if (GUILayout.Button("Select Avatar"))
+            {
+                var avatar = await _debugger._userAvatarLoader.LoadAvatar();
+                if (avatar == null) return;
+                _debugger._avatarConnector.Dispose();
+                _debugger._avatarConnector.ApplyAvatar(avatar);
+            }
             
             EditorGUI.EndDisabledGroup();
             

@@ -19,11 +19,11 @@ namespace MimiCast.Scripts.UseCase
         
         public async void Start()
         {
-            var avatar = await LoadAvatar(path);
+            var avatar = await Load(path);
             connector.ApplyAvatar(avatar);
         }
 
-        public async Task<MimiAvatar> LoadAvatar(string targetpath)
+        public async Task<MimiAvatar> LoadAvatar()
         {
             var extension = new [] {
                 new ExtensionFilter("vrm Files", "vrm", "VRM"),
@@ -31,8 +31,14 @@ namespace MimiCast.Scripts.UseCase
             var path = StandaloneFileBrowser.OpenFilePanel("Load VRM File", "", extension,false);
 
             if (path.Length <= 0) return null;
-            
-            var loader = new VrmLoader(path[0]);
+
+            return await Load(path[0]);
+
+        }
+
+        private async Task<MimiAvatar> Load(string targetpath)
+        {
+            var loader = new VrmLoader(targetpath);
             _avatar = await loader.LoadModel();
             
             if (_avatar == null)
@@ -41,6 +47,6 @@ namespace MimiCast.Scripts.UseCase
             }
 
             return _avatar;
-        }
+        } 
     }
 }

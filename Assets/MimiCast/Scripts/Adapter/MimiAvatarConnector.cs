@@ -4,7 +4,6 @@ using MimiCast.Scripts.Entity;
 using MimiCast.Scripts.Infrastructure;
 using UniRx;
 using UnityEngine;
-using VrmLib;
 
 namespace MimiCast.Scripts.Adapter
 {
@@ -94,7 +93,7 @@ namespace MimiCast.Scripts.Adapter
 
         public void Dispose()
         {
-            _avatar.Dispose();
+            _avatar?.Dispose();
             _avatar = null;
         }
         

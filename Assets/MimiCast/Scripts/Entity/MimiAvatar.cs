@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using UniGLTF;
-using UniGLTF.Utils;
 using UnityEngine;
 using UniVRM10;
 
