@@ -11,19 +11,19 @@
                     <ui:VisualElement style="background-image: url(&apos;project://database/Packages/black.kit.launchpadicons/Runtime/IK.svg?fileID=6192944022281365145&amp;guid=b58ab341eaac2a946b4831c627ff6ab4&amp;type=3#IK&apos;); width: 100px; height: 124px; -unity-background-image-tint-color: rgb(204, 80, 126);" />
                 </ui:Button>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="center" style="width: 1084px;" />
-        <ui:VisualElement name="wave" style="flex-grow: 1;">
-            <ui:VisualElement style="flex-direction: row-reverse;">
-                <ui:VisualElement name="LeftBox" style="height: auto; width: auto; flex-direction: column; align-items: center; justify-content: flex-start; flex-grow: 0; margin-top: 0; flex-shrink: 1;">
-                    <ui:VisualElement style="height: 200px; width: 200px; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 163px; border-top-right-radius: 163px; border-bottom-right-radius: 163px; border-bottom-left-radius: 163px; align-items: center; justify-content: center;">
-                        <ui:Button display-tooltip-when-elided="true" style="height: 150px; width: 150px; background-color: rgba(212, 143, 141, 0); font-size: 37px; -unity-text-align: middle-center; border-top-left-radius: 113px; border-top-right-radius: 113px; border-bottom-right-radius: 113px; border-bottom-left-radius: 113px; align-items: center; justify-content: center; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);">
-                            <ui:VisualElement style="background-image: url(&apos;project://database/Packages/black.kit.launchpadicons/Runtime/Rocket.svg?fileID=6192944022281365145&amp;guid=bf571c63c613b5740b81c8f6b56db1f2&amp;type=3#Rocket&apos;); width: 100px; height: 100px; -unity-background-image-tint-color: rgb(204, 80, 126);" />
-                        </ui:Button>
-                    </ui:VisualElement>
-                </ui:VisualElement>
+            <ui:VisualElement style="height: 200px; width: 200px; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 163px; border-top-right-radius: 163px; border-bottom-right-radius: 163px; border-bottom-left-radius: 163px; align-items: center; justify-content: center;">
+                <ui:Button display-tooltip-when-elided="true" name="HelpButton" style="height: 150px; width: 150px; background-color: rgba(212, 143, 141, 0); font-size: 37px; -unity-text-align: middle-center; border-top-left-radius: 113px; border-top-right-radius: 113px; border-bottom-right-radius: 113px; border-bottom-left-radius: 113px; align-items: center; justify-content: center; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);">
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Packages/black.kit.launchpadicons/Runtime/Rocket.svg?fileID=6192944022281365145&amp;guid=bf571c63c613b5740b81c8f6b56db1f2&amp;type=3#Rocket&apos;); width: 100px; height: 100px; -unity-background-image-tint-color: rgb(204, 80, 126);" />
+                </ui:Button>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="center" style="width: 1084px; flex-grow: 1;" />
+        <ui:VisualElement name="RightBox" style="height: auto; width: auto; flex-direction: column; align-items: center; justify-content: flex-start; flex-grow: 0; margin-top: 0; flex-shrink: 1;">
+            <ui:VisualElement style="height: 200px; width: 200px; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 163px; border-top-right-radius: 163px; border-bottom-right-radius: 163px; border-bottom-left-radius: 163px; align-items: center; justify-content: center;">
+                <ui:Button display-tooltip-when-elided="true" name="ExitButton" style="height: 150px; width: 150px; background-color: rgba(212, 143, 141, 0); font-size: 37px; -unity-text-align: middle-center; border-top-left-radius: 113px; border-top-right-radius: 113px; border-bottom-right-radius: 113px; border-bottom-left-radius: 113px; align-items: center; justify-content: center; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); background-image: none;">
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Packages/black.kit.launchpadicons/Runtime/Logout.svg?fileID=6192944022281365145&amp;guid=6dbd81fdd90e8b64da569b9f04fc71de&amp;type=3#Logout&apos;); width: 100px; height: 100px; -unity-background-image-tint-color: rgb(204, 80, 126);" />
+                </ui:Button>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

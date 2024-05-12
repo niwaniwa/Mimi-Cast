@@ -1,7 +1,6 @@
 ﻿using System;
 using MimiCast.Scripts.Entity;
 using UniRx;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 namespace MimiCast.Scripts.Infrastructure
