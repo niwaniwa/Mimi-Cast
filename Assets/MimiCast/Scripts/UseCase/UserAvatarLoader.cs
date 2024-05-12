@@ -11,17 +11,7 @@ namespace MimiCast.Scripts.UseCase
 {
     public class UserAvatarLoader : MonoBehaviour
     {
-
-        [SerializeField] private string path;
-        [SerializeField] private MimiAvatarConnector connector;
-
         private MimiAvatar _avatar;
-        
-        public async void Start()
-        {
-            var avatar = await Load(path);
-            connector.ApplyAvatar(avatar);
-        }
 
         public async Task<MimiAvatar> LoadAvatar()
         {
