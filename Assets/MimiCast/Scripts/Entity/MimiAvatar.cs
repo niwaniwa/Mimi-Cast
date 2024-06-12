@@ -54,6 +54,11 @@ namespace MimiCast.Scripts.Entity
         {
             GameObject.Destroy(ModelData.gameObject);
         }
+
+        public Transform GetBone(HumanBodyBones bone)
+        {
+            return Instance.Runtime.ControlRig.GetBoneTransform(bone);
+        }
         
         public static string GetHierarchyPath(GameObject gameObject )
         {
