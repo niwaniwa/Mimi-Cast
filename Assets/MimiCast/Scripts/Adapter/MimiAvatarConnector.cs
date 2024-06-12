@@ -12,6 +12,7 @@ namespace MimiCast.Scripts.Adapter
         [SerializeField] private Device device;
         [SerializeField] private MimiFaceAngleController faceAngleController;
         [SerializeField] private MimiFaceToBodyController faceToBodyController;
+        [SerializeField] private MimiBodyController bodyController;
         
         private MimiAvatar _avatar;
         private bool isProcessing = true;
@@ -60,7 +61,8 @@ namespace MimiCast.Scripts.Adapter
             
             _avatar.Neck.rotation = faceAngleController.FaceAngle;
             _avatar.Chest.rotation = faceToBodyController.BodyAngle;
-
+            _avatar.Chest.rotation = faceToBodyController.BodyAngle;
+    
         }
 
         public void FixedUpdate()
@@ -71,6 +73,9 @@ namespace MimiCast.Scripts.Adapter
         public void ApplyAvatar(MimiAvatar avatar)
         {
             _avatar = avatar;
+            bodyController.UpdateAngle();
+            _avatar.GetBone(HumanBodyBones.LeftShoulder).rotation = bodyController.LeftShoulderAngle;
+            _avatar.GetBone(HumanBodyBones.RightShoulder).rotation = bodyController.RightShoulderAngle;
         }
 
         public bool Calibration()

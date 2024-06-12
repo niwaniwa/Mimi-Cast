@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MimiCast.Scripts.Adapter
 {
@@ -11,10 +12,12 @@ namespace MimiCast.Scripts.Adapter
         [SerializeField] private float lerpTime = 5;
 
         [SerializeField] private MimiAvatarConnector avatarConnector;
+        [SerializeField] private Slider fieldOfValueSlider;
         
         public void Start()
         {
             _mainCamera = gameObject.GetComponent<Camera>();
+            fieldOfValueSlider.value = _mainCamera.fieldOfView;
         }
 
         public void FixedUpdate()
@@ -30,6 +33,7 @@ namespace MimiCast.Scripts.Adapter
             var targetPos = new Vector3(cameraPos.x, avatarPos.y, zPosition);
 
             _mainCamera.transform.position = Vector3.Lerp(cameraPos, targetPos, lerpTime);
+            _mainCamera.fieldOfView = Mathf.Lerp(_mainCamera.fieldOfView, fieldOfValueSlider.value, lerpTime);
         }
 
     }
